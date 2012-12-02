@@ -1,0 +1,80 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-12-01 20:52-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: jambo.plugin.php:24
+#, php-format
+msgid "[CONTACT FORM] %s"
+msgstr ""
+
+#: jambo.plugin.php:26
+msgid "Thank you for your feedback. I'll get back to you as soon as possible."
+msgstr ""
+
+#: jambo.plugin.php:49
+msgid "Where To Send Email: "
+msgstr ""
+
+#: jambo.plugin.php:53
+msgid "Subject: "
+msgstr ""
+
+#: jambo.plugin.php:57
+#, php-format
+msgid "An %s in the subject will be replaced with a subject provided by the user. If omitted, no subject will be requested."
+msgstr ""
+
+#: jambo.plugin.php:60
+msgid "Success Message: "
+msgstr ""
+
+#: jambo.plugin.php:62
+msgid "Save"
+msgstr ""
+
+#: jambo.plugin.php:126
+msgid "Name"
+msgstr ""
+
+#: jambo.plugin.php:127
+msgid "Your Name is required."
+msgstr ""
+
+#: jambo.plugin.php:133 jambo.plugin.php:137
+msgid "Email"
+msgstr ""
+
+#: jambo.plugin.php:134
+msgid "Your Email must be a valid address."
+msgstr ""
+
+#: jambo.plugin.php:142
+msgid "Subject"
+msgstr ""
+
+#: jambo.plugin.php:148
+msgid "Message"
+msgstr ""
+
+#: jambo.plugin.php:149
+msgid "Your message cannot be blank."
+msgstr ""
+
+#: jambo.plugin.php:154
+msgid "Submit"
+msgstr ""
