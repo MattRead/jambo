@@ -4,6 +4,7 @@
 	<license url="http://www.apache.org/licenses/LICENSE-2.0.html">Apache Software License 2.0</license>
 	<author url="http://drunkenmonkey.org/projects/jambo">Drunken Monkey Labs</author>
 	<version>2.1</version>
+	<guid>96ddd784-f841-45e6-bde0-1c5cd204713e</guid>
 	<url>http://drunkenmonkey.org/projects/jambo</url>
 	<description><![CDATA[Adds a contact form to any page or post.]]></description>
 	<copyright>2011</copyright>
