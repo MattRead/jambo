@@ -1,5 +1,7 @@
 <?php
 
+namespace Habari;
+
 /**
  * Jambo a contact form plugin for Habari
  *
