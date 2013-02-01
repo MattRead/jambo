@@ -156,10 +156,14 @@ class Jambo extends Plugin
 		$form->append( 'submit', 'jambo_submit', _t('Submit', 'jambo'), 'formcontrol_submit' );
 		$form->jambo_submit->tabindex = 5;
 
-		// Set up form processing
-		$form->on_success( array($this, 'process_jambo_form'), $settings );
+		// Create hidden token fields
+		self::insert_token($form);
 
-		Plugins::act( 'jambo_build_form', $form, $this ); // Allow modification of form
+		// Set up form processing
+		$form->on_success(array($this, 'process_jambo_form'), $settings);
+
+		// Allow modification of form
+		Plugins::act('jambo_form', $form, $this);
 
 		// Return the form object
 		return $form;
@@ -206,8 +210,52 @@ class Jambo extends Plugin
 	 */
 	public function filter_jambo_email( Array $email, FormUI $form )
 	{
-		// @todo implement a blacklist or something.
+		if ( !self::verify_token($form->token, $form->timestamp) ) {
+			ob_end_clean();
+			header( 'HTTP/1.1 403 Forbidden' );
+			die(
+				'<h1>' . _t('The selected action is forbidden.', 'jambo') . '</h1>' .
+				'<p>' . _t('You are submitting the form too fast and look like a spam bot.', 'jambo') . '</p>'
+			);
+		}
+
+		// FIXME implement a blacklist or something.
 		return $email;
+	}
+
+	/**
+	 * Create the token based on the time string submitted and the UID for this Habari installation.
+	 */
+	private static function create_token( $timestamp )
+	{
+		$token = substr( md5( $timestamp . Options::get( 'GUID' ) ), 0, 10 );
+		$token = Plugins::filter( 'jambo_token', $token, $timestamp );
+		return $token;
+	}
+
+	/**
+	 * Verify that the token and time passed are valid.
+	 */
+	private static function verify_token( $token, $timestamp )
+	{
+		if ( $token == self::create_token( $timestamp ) ) {
+			if ( ( time() > ( $timestamp + 5 ) ) && ( time() < ( $timestamp + 5*60 ) ) ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Add the token fields to the form.
+	 */
+	private static function insert_token( $form )
+	{
+		$timestamp = time();
+		$token = self::create_token( $timestamp );
+		$form->append( 'hidden', 'token', 'null:null' )->value = $token;
+		$form->append( 'hidden', 'token_time', 'null:null' )->value = $timestamp;
+		return $form;
 	}
 }
 
