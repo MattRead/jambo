@@ -210,9 +210,9 @@ class Jambo extends Plugin
 	 */
 	public function filter_jambo_email( Array $email, FormUI $form )
 	{
-		if ( !self::verify_token($form->token, $form->timestamp) ) {
+		if ( !self::verify_token($form->token->value, $form->token_time->value) ) {
 			ob_end_clean();
-			header( 'HTTP/1.1 403 Forbidden' );
+			header('HTTP/1.1 403 Forbidden');
 			die(
 				'<h1>' . _t('The selected action is forbidden.', 'jambo') . '</h1>' .
 				'<p>' . _t('You are submitting the form too fast and look like a spam bot.', 'jambo') . '</p>'
@@ -239,11 +239,12 @@ class Jambo extends Plugin
 	private static function verify_token( $token, $timestamp )
 	{
 		if ( $token == self::create_token( $timestamp ) ) {
-			if ( ( time() > ( $timestamp + 5 ) ) && ( time() < ( $timestamp + 5*60 ) ) ) {
-				return false;
+			$time = time();
+			if ( $time > ($timestamp + 3) && $time < ($timestamp + 5*60) ) {
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
 	/**
