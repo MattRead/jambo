@@ -156,6 +156,11 @@ class Jambo extends Plugin
 		$form->append( 'submit', 'jambo_submit', _t('Submit', 'jambo'), 'formcontrol_submit' );
 		$form->jambo_submit->tabindex = 5;
 
+		$form->append(new FormControlStatic(
+			'honeypot',
+			'<!-- <!-- -> <label for="your_name">Your Name:</label><input type="text" name="your_name" /> -->'
+		));
+
 		// Create hidden token fields
 		self::insert_token($form);
 
@@ -210,7 +215,7 @@ class Jambo extends Plugin
 	 */
 	public function filter_jambo_email( Array $email, FormUI $form )
 	{
-		if ( !self::verify_token($form->token->value, $form->token_time->value) ) {
+		if ( $form->honeypot->value || !self::verify_token($form->token->value, $form->token_time->value) ) {
 			ob_end_clean();
 			header('HTTP/1.1 403 Forbidden');
 			die(
