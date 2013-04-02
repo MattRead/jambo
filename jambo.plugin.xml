@@ -24,5 +24,4 @@
 	<provides>
 		<feature url="http://wiki.habariproject.org/en/feature/contact_form">contact_form</feature>
 	</provides>
-	
 </pluggable>
