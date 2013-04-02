@@ -20,7 +20,7 @@
 			<p>For example <code>[contact_form send_to="<em>quotes@mastermade.us</em>" subject="<em>Quote Request</em>"/]</code> would send an email to <em>quotes@mastermade.us</em> with the subject <em>Quote Request</em>.</p>
 		]]></value>
 	</help>
-	
+
 	<provides>
 		<feature url="http://wiki.habariproject.org/en/feature/contact_form">contact_form</feature>
 	</provides>
